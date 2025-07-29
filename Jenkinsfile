@@ -12,6 +12,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build("helloworld-image")
+                    sh 'Docker Image build successfull'
                 }
             }
         }
@@ -20,6 +21,7 @@ pipeline {
             steps {
                 script {
                     dockerImage.run()
+                    sh 'Container created'
                 }
             }
         }
