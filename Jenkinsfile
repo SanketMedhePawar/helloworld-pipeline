@@ -8,9 +8,19 @@ pipeline {
             }
         }
 
-        stage('Run Script') {
+        stage('Build Docker Image') {
             steps {
-                sh 'python3 helloworld.py'
+                script {
+                    dockerImage = docker.build("helloworld-image")
+                }
+            }
+        }
+
+        stage('Run in Docker') {
+            steps {
+                script {
+                    dockerImage.run()
+                }
             }
         }
     }
